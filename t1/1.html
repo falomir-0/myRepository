@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="icon" type="image/png" href="favicon.ico">
+	<link rel="apple-touch-icon" type="image/png" href="favicon.ico">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="format-detection" content="telephone=no">
+	<meta name = "viewport" content = "width = device-width, height = device-height, user-scalable = no, viewport-fit=cover, initial-scale = 1">
+	<title>麥當勞報報</title>
+	<link rel="stylesheet" href="m.css">
+</head>
+<body>
+	<div>
+		<div id="top">
+			<img class="align_bottom" src="top.jpg">
+		</div>
+		<div class="show_case">
+			<div class="item" onclick="click_item(0)">
+				<img src="0.jpg">
+				<div class="expired_date"> 期限：2021 年 4 月 25 日 尚餘：1 天 18 小時</div>
+				<img src="exchange.jpg">
+			</div>
+			<div class="item" onclick="click_item(1)">
+				<img src="1.jpg">
+				<div class="expired_date"> 期限：2021 年 4 月 25 日 尚餘：1 天 18 小時</div>
+				<img src="exchange.jpg">
+			</div>
+			<div class="item" onclick="click_item(2)">
+				<img src="2.jpg">
+				<div class="expired_date"> 期限：2021 年 4 月 25 日 尚餘：1 天 18 小時</div>
+				<img src="exchange.jpg">
+			</div>
+			<div class="item" onclick="click_item(3)">
+				<img src="3.jpg">
+				<div class="expired_date"> 期限：2021 年 4 月 25 日 尚餘：1 天 18 小時</div>
+				<img src="exchange.jpg">
+			</div>
+
+			<div class="blank"></div>
+		</div>
+		<div class="bottom">
+			<img src="bottom.jpg">
+		</div>
+	</div>
+
+	<div>
+		<img id="load" src="loading.jpg">
+		<div hidden id="top_prompt">
+			<img class="align_bottom" onclick="click_back()" src="top_prompt.jpg">
+		</div>
+		<div id="prompt_page">
+		</div>
+		<div hidden id="count_down_bottom">
+			<img src="count_down.jpg">
+		</div>
+		<div hidden id="count_down_time">1:59</div>
+		<div id="veil"></div>
+	</div>
+
+
+	<div id="flex-container">
+		<div class="dialog">
+			<p class="dialog-header">確認兌換優惠</p>
+			<p class="dialog-content">請確認您已在麥當勞櫃台，點選「立即<br>兌換」後，需於兩分鐘內出示給結帳人<br>員</p>
+			<div class="dialog-button">
+				<a class="left" onclick="click_unuse()">暫不兌換</a>	
+				<a class="right" onclick="click_use()">立即兌換</a>	
+			</div>
+		</div>
+	</div>
+
+	
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="m.js"></script>
+</body>
+</html>
