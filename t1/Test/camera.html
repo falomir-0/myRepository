@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+	<meta charset="utf-8">
+	<title>getUserMedia</title>
+
+	<script type="text/javascript">
+		if (navigator.mediaDevices === undefined)
+			navigator.mediaDevices = {};
+
+		if (navigator.mediaDevices.getUserMedia === undefined) {
+		  navigator.mediaDevices.getUserMedia = function(constraints) {
+		    var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+		    // 一些浏览器根本没实现它 - 那么就返回一个error到promise的reject来保持一个统一的接口
+		    if (!getUserMedia) {
+		      return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+		    }
+
+		    // 否则，为老的navigator.getUserMedia方法包裹一个Promise
+		    return new Promise(function(resolve, reject) {
+		      getUserMedia.call(navigator, constraints, resolve, reject);
+		    });
+		  }
+		}
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+		var front = true;
+		const mediaStreamConstraints = {
+			video: {
+				frameRate: { ideal: 10, max: 15 },
+				facingMode: (front? "user" : "environment"),
+				width: { ideal: 1280 },
+				height: { ideal: 720 }
+			},
+			audio: true
+		};
+
+		function handleMediaStreamError(error) {
+		  console.log('navigator.getUserMedia error: ', error);
+		}
+
+		function gotLocalMediaStream(mediaStream) {
+		  // console.log(mediaStream)
+		  const localStream = mediaStream;
+
+		  // 取的video html element( HTMLMediaElement ).
+		  const localVideo = document.querySelector('video');
+		  // Older browsers may not have srcObject.
+		  if ("srcObject" in localVideo) {
+		    localVideo.srcObject = localStream;
+		  } else {
+		    // Avoid using this in new browsers, as it is going away.
+		    localVideo.src = window.URL.createObjectURL(localStream);
+		  }
+		}
+
+		navigator.mediaDevices
+		  .getUserMedia(mediaStreamConstraints)
+		  .then(gotLocalMediaStream)
+		  .catch(handleMediaStreamError)
+	</script>
+</head>
+<body>
+	<video autoplay></video>
+</body>
+</html>

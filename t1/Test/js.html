@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+	<head>
+		<meta charset="utf-8">
+		<title>2.html</title>
+		<style type="text/css">
+			div{font-size:15px;font-family:　arial;}
+		</style>
+	</head>
+<body>
+<input type="text" name="myText" value="">
+<div id='ascii'>@@@@@@@@@@@@@@@@</div>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	/*
+	var len =  document.getElementById('len');
+	len.innerHTML = history.length;
+
+	if (navigator.onLine ) { 
+	    alert('online');
+	}
+	else
+		alert('offline');
+
+	if (confirm('你滿18歲嗎？')) {
+	    alert('你確定嗎?');
+	} else {
+	    alert('喔是喔');
+	}
+
+	var username = prompt('輸入你的暱稱', '');
+	if(username)
+		document.getElementById('name').innerHTML = '你好，'+username;
+
+	var timeoutID = setTimeout(
+		function() {
+	    alert('5 sec time\'s up');}
+	    , 5000);
+	clearTimeout(timeoutID);
+
+	var intervalID = setInterval(
+		function() {
+	    alert('10 sec time\'s up');}
+		, 10000);
+	clearInterval(intervalID);
+	*/
+
+	//////////////////////////////////////////////////////////////////////////
+
+	/*
+	document.cookie =  'username=' + eval('('+JSON.stringify(encodeURIComponent(username))+')') + ';max-age=86400*30*3; path=/';
+
+	alert(document.cookie);
+
+	function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+	    for (var i = 0; i < cookies.length; i++) {
+	        var cookie = cookies[i];
+	        var eqPos = cookie.indexOf("=");
+	        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+	        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+	    }
+	}
+	*/
+
+	//////////////////////////////////////////////////////////////////////////
+
+	var fontSize = 20;
+	var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+	var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+	var mPosX,mPosY;
+	document.addEventListener('click',
+    	function(ev) {
+    	});
+
+    document.addEventListener('mousemove',
+    	function(ev) {
+    		mPosX = parseInt(ev.pageX/fontSize);
+    		mPosY = parseInt(ev.pageY/fontSize);
+    	});
+
+    $('div').click(function() {
+		document.getElementById('ascii').style.color = 'blue';
+		setTimeout(function() {
+	    	document.getElementById('ascii').style.color = 'black';}
+	    , 200);
+	});
+
+	$('*').keydown(
+		function(ev) {
+			if ( ev.which == 65 )
+	  			(mPosX==0?0:mPosX--);
+	  		if ( ev.which == 68 )
+	  			(mPosX==parseInt(windowWidth/fontSize)-1?0:mPosX++);
+	  		if ( ev.which == 87 )
+	  			(mPosY==0?0:mPosY--);
+	  		if ( ev.which == 83 )
+	  			(mPosY==parseInt(windowHeight/fontSize)-1?0:mPosY++);
+	});
+	
+	setInterval(
+		function() {
+		    document.getElementById('ascii').innerHTML = '';
+			    for(j=0;j<parseInt(windowHeight/fontSize);j++)
+			    {
+			    	for(i=0;i<parseInt(windowWidth/fontSize);i++)
+			    		if(!(mPosX==i &&mPosY==j))
+			    			document.getElementById('ascii').innerHTML += '█';
+			    		else
+			    			document.getElementById('ascii').innerHTML += '__';
+			    	document.getElementById('ascii').innerHTML += '\n';
+			    }
+	}, 200);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>js2.html</title>
+  </head>
+<body>
+<img src="../1.jpg" with="600" heigh="400" style="display: none"></img>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $('img').fadeTo('slow', 0.33);
+
+    $(document).ready(function(e) {
+      var refresher = setInterval("update_content();",500);
+    })
+
+    var isOdd = true;
+    var reDirUrl = "../0.html";
+
+    function update_content(){
+      $.ajax({
+        type: "GET",
+        url: reDirUrl
+      })
+        .done(function(page_html) {
+          //alert("LOADED");
+          isOdd = !isOdd;
+          reDirUrl = (isOdd)? "../0.html" : "coursera.html";
+
+      var newDoc = document.open("text/html", "replace");
+      newDoc.write(page_html);
+      newDoc.close();
+    });
+
+}
+  </script>
+</body>
+</html>
