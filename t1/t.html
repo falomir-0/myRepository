@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+	<head>
+		<meta charset="utf-8">
+		<title>2.html</title>
+		<style type="text/css">
+			div{font-size:20px;font-family:　Monaco;}
+		</style>
+	</head>
+<body>
+
+<!--div id='mPos'>pos</div-->
+<div id='ascii'>@@@@@@@@@@@@@@@@</div>
+
+
+
+<script>
+	/*
+	var len =  document.getElementById('len');
+	len.innerHTML = history.length;
+
+	if (navigator.onLine ) { 
+	    alert('online');
+	}
+	else
+		alert('offline');
+
+	if (confirm('你滿18歲嗎？')) {
+	    alert('你確定嗎?');
+	} else {
+	    alert('喔是喔');
+	}
+
+	var username = prompt('輸入你的暱稱', '');
+	if(username)
+		document.getElementById('name').innerHTML = '你好，'+username;
+
+	var timeoutID = setTimeout(
+		function() {
+	    alert('5 sec time\'s up');}
+	    , 5000);
+	clearTimeout(timeoutID);
+
+	var intervalID = setInterval(
+		function() {
+	    alert('10 sec time\'s up');}
+		, 10000);
+	clearInterval(intervalID);
+	*/
+
+	//////////////////////////////////////////////////////////////////////////
+
+	/*
+	document.cookie =  'username=' + eval('('+JSON.stringify(encodeURIComponent(username))+')') + ';max-age=86400*30*3; path=/';
+
+	alert(document.cookie);
+
+	function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+	    for (var i = 0; i < cookies.length; i++) {
+	        var cookie = cookies[i];
+	        var eqPos = cookie.indexOf("=");
+	        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+	        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+	    }
+	}
+	*/
+
+	//////////////////////////////////////////////////////////////////////////
+
+	document.addEventListener('click',
+    	function(ev) {
+    	});
+
+    document.addEventListener('mousemove',
+    	function(ev) {
+			//document.getElementById('mPos').innerHTML = 'mouse:'+ev.pageX+','+ev.pageY+' window:'+window.innerWidth+','+window.innerHeight+' ind:'+parseInt(ev.pageX/20)*20+','+parseInt(ev.pageY/20)*20;
+
+			document.getElementById('ascii').innerHTML = '';
+		    for(j=0;j<parseInt(window.innerHeight/20);j++)
+		    {
+		    	for(i=0;i<parseInt(window.innerWidth/20);i++)
+		    		if(!(parseInt(ev.pageX/20)==i && parseInt(ev.pageY/20)==j))
+		    			document.getElementById('ascii').innerHTML += '＠';
+		    		else
+		    			document.getElementById('ascii').innerHTML += '　';
+		    	document.getElementById('ascii').innerHTML += '\n';
+		    }
+    	});
+
+
+</script>
+
+</body>
+</html>
